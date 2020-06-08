@@ -11,6 +11,7 @@ export class Pokesearch extends Component {
       pokedata: [],
       types: [],
       call: false,
+      img: "",
     };
   }
 
@@ -36,7 +37,7 @@ export class Pokesearch extends Component {
   };
 
   render() {
-    const { pokemon, call, types } = this.state;
+    const { pokemon, call, types, pokedata } = this.state;
     // if (this.state.pokedata != null) {
     //   const { types } = this.state;
 
@@ -56,7 +57,13 @@ export class Pokesearch extends Component {
         <button type="submit" onClick={this.handleClick}>
           search
         </button>
-        {call ? types.map((x) => <Pokemon types={x.type.name} />) : null}
+        {call
+          ? types.map((x) => (
+              <Pokemon types={x.type.name} img={pokedata.sprites.front_default}>
+                {pokedata}
+              </Pokemon>
+            ))
+          : null}
       </div>
     );
   }
