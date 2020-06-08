@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Pokemon from "./Pokemon";
+import Poketile from "./Poketile";
 
 export class Pokesearch extends Component {
   constructor(props) {
@@ -9,9 +10,7 @@ export class Pokesearch extends Component {
     this.state = {
       pokemon: "",
       pokedata: [],
-      types: [],
       call: false,
-      img: "",
     };
   }
 
@@ -26,23 +25,14 @@ export class Pokesearch extends Component {
         this.setState({
           ...this.state,
           pokedata: response.data,
-          types: response.data.types,
           call: true,
         });
-        //   { pokemon: "", pokedata: res  ponse.data },
-        //   console.log(this.state)
       });
-
-    // console.log(this.state);
   };
 
   render() {
-    const { pokemon, call, types, pokedata } = this.state;
-    // if (this.state.pokedata != null) {
-    //   const { types } = this.state;
+    const { pokemon, call, pokedata } = this.state;
 
-    //   types.map((x) => <Pokemon />);
-    // }
     return (
       <div>
         <div id="input-field">
@@ -57,13 +47,10 @@ export class Pokesearch extends Component {
         <button type="submit" onClick={this.handleClick}>
           search
         </button>
-        {call
-          ? types.map((x) => (
-              <Pokemon types={x.type.name} img={pokedata.sprites.front_default}>
-                {pokedata}
-              </Pokemon>
-            ))
-          : null}
+        {call ? <Poketile pokedata={pokedata} /> : null}
+        {/* {call
+          ? types.map((x) => <Pokemon types={x.type.name}>{pokedata}</Pokemon>)
+          : null} */}
       </div>
     );
   }

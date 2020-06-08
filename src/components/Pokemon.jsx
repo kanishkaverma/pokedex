@@ -4,7 +4,7 @@ const Pokemon = (props) => {
   return (
     <div>
       <div className="image">
-        <img src={props.img} />
+        <img src={props.children.sprites.front_default} />
       </div>
       <div className="type">{props.types}</div>
     </div>
