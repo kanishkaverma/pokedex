@@ -5,11 +5,17 @@ import React, { Component } from "react";
 class chart extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      
+    };
+  }
+  
+  componentDidMount() {
     const {
       stats: [a, b, c, d, e, f],
     } = this.props;
-
-    this.state = {
+    this.setState({
       labels: [
         a.stat.name,
         b.stat.name,
@@ -46,7 +52,7 @@ class chart extends Component {
           ],
         },
       ],
-    };
+    });
   }
 
   render() {
