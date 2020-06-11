@@ -1,0 +1,59 @@
+body {
+  background-color: rgb(179, 37, 37);
+  background-size: cover;
+  background-position: center;
+  //   color: #555;
+  //   height: 98vh;
+  //   width: 98vw;
+  font-family: "Gugi", cursive;
+  text-align: center;
+  transition: background-color 250ms ease-in;
+}
+#input_container {
+  top: 0;
+  right: 0;
+  margin: 10px;
+  width: 390px;
+  max-width: 95 vw;
+  z-index: 10;
+  position: absolute;
+}
+img {
+  width: 200px;
+  height: auto;
+}
+.loading {
+  display: true;
+}
+
+input {
+  font-size: 30px;
+
+  padding: 10px 5px 0px 5px;
+  outline: none;
+  display: inline;
+  height: 52px;
+  line-height: 52px;
+  font-family: "pokemon";
+}
+
+// .boilerplate-div {
+//   width: 100vw;
+//   height: max-content;
+//   text-align: center;
+//   text-decoration: none;
+//   font-size: 50px;
+//   color: #5d6068d6;
+//   text-transform: uppercase;
+
+//   &:hover {
+//     color: Black;
+//     cursor: pointer;
+//   }
+// }
+
+// import base - contains global styles, such as resets, typography, colors
+// import components- contains each self-contained component in its own .scss partial
+// import pages contains page-specific styling
+
+// example import statement '@import 'pages/home';'
