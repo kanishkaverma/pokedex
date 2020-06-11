@@ -5,6 +5,7 @@ import Poketile from "./Poketile";
 import levenshtein from "fast-levenshtein";
 import Pokeicon from "./Pokeicon";
 import ReactLoading from "react-loading";
+import { usePalette } from "react-palette";
 
 export class Pokesearch extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ export class Pokesearch extends Component {
       call: false,
       pokelist: [],
       searchresult: [],
+      color: {},
     };
   }
   handleIconClick = (x) => {
@@ -75,21 +77,30 @@ export class Pokesearch extends Component {
 
   render() {
     const { pokemon, call, pokedata, searchresult } = this.state;
-    console.log(pokedata);
+    // if (call && pokedata.length != 0) {
+    //   const { col, loading, error } = usePalette(
+    //     this.state.pokedata.sprites.front_default
+    //   );
+    //   console.log(col);
+    //   this.setState({ color: col });
+    // }
+
     return (
       <div>
-        <div id="input-field">
-          <input
-            type="text"
-            value={pokemon}
-            onChange={this.handleChange}
-            name="search"
-            id="search-bar"
-          />
+        <div id="input_container">
+          <div id="input-field">
+            <input
+              type="text"
+              value={pokemon}
+              onChange={this.handleChange}
+              name="search"
+              id="search-bar"
+            />
+          </div>
+          <button type="submit" onClick={this.handleClick}>
+            search
+          </button>
         </div>
-        <button type="submit" onClick={this.handleClick}>
-          search
-        </button>
         {pokedata.length == 0 && !call ? (
           <></>
         ) : call ? (
@@ -102,7 +113,7 @@ export class Pokesearch extends Component {
             />
           </div>
         ) : (
-          <Poketile pokedata={pokedata} />
+          <Poketile pokedata={pokedata} color={this.state.color} />
         )}
         {searchresult.length > 0 ? (
           searchresult.map((x, i) => (

@@ -6,14 +6,14 @@ class chart extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      
-    };
+    this.state = {};
   }
-  
+
   componentDidMount() {
+    console.log(this.props);
     const {
       stats: [a, b, c, d, e, f],
+      color,
     } = this.props;
     this.setState({
       labels: [
@@ -27,7 +27,7 @@ class chart extends Component {
       datasets: [
         {
           backgroundColor: [
-            "#f5b841",
+            "#ffffff",
             "#393e41",
             "#87bcde",
             "#81171b",
