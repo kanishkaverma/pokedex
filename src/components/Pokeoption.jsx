@@ -9,6 +9,8 @@ import { usePalette } from "react-palette";
 import { setColor } from "../redux/actions/actions";
 
 function Pokeoption() {
+
+  //destructuring 
   const imgsrc = useSelector((state) => state.delta.data.sprites.front_default);
   const name = useSelector((state) => state.delta.data.name);
   const color = useSelector((state) => state.delta.color);
@@ -16,13 +18,13 @@ function Pokeoption() {
   const [pokerender, setPokerender] = useState(false);
   const [pokeOptionrender, setPokeOptionrender] = useState(true);
   const { data, loading, error } = usePalette(imgsrc);
+
+  //click handler 
   const handleClick = (e) => {
-    // e.preventDefault();
-    // return <Pokemon />;
     setPokerender(true);
     setPokeOptionrender(false);
   };
-
+  // dynamically change theme 
   useEffect(() => {
     if (!loading) {
       if (error) {
@@ -33,13 +35,10 @@ function Pokeoption() {
       }
     }
   }, [loading]);
-  // ask ishan color consoled everytime why wont this work ^
-  //   useEffect(() => {
-  //     setColorLocal(data);
-  //     dispatch(setColor(color_local));
-  //   }, []);
+
   return (
     <div>
+      {/* conditional rendering of Pokemon component.   */}
       {pokeOptionrender && (
         <div className="pokemon-select">
           <img src={imgsrc} alt="Pokemon image." onClick={handleClick} />

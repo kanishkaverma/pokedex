@@ -14,6 +14,7 @@ const store = configureStore();
 function App() {
   return (
     <Provider store={store}>
+      
      <Pokefind />
       </Provider>
   );

@@ -10,13 +10,20 @@ const Pokefind = () => {
   const dispatch = useDispatch();
   const [input, setInput] = useState("");
   const [loading_local, setLoadingLocal] = useState(false);
+
+  // fall color back for default theme
   var fallback = "white";
+
+  // refresh theme when there is a pokemon in the state
   useEffect(() => {
     if (data.color) {
       fallback = data.color.darkVibrant;
-      console.log("fallback changed", fallback);
     }
   }, [data]);
+
+  // click handler:
+  // dispatches fetch data
+  // sets loading  true and after a delay sets it false
   const handleClick = (e) => {
     dispatch(fetchData(input));
     setLoadingLocal(true);
@@ -24,19 +31,18 @@ const Pokefind = () => {
       setLoadingLocal(false);
     }, 500);
   };
-  // useEffect(() => {
-  //   document.body.style.backgroundColor = pokedata.delta.color.vibrant;
-  // }, [pokedata.delta.color]);
 
   return (
     <div>
       <div className="search-bar-root">
+        {/* style theme tag according to the pokemon  */}
         <input
           type="text"
           value={input}
           onChange={(i) => setInput(i.target.value)}
           className="search-bar"
           style={{
+            // use data.color if available otherwise use fallback color.
             border: `4px solid ${
               data.color && data.color.darkVibrant
                 ? data.color.darkVibrant
@@ -52,15 +58,7 @@ const Pokefind = () => {
         <button onClick={handleClick}>Search</button>
       </div>
       <div className="response">
-        {/* {(pokedata == {}) & pokedata.delta.loading ? (
-          <h2>loading</h2>
-        ) : pokedata.delta.error ? (
-          <h2>{pokedata.delta.error}</h2>
-        ) : (
-          <div>
-            <Pokeoption />
-          </div>
-        )} */}
+        {/* if pokedata is empty or loading_local is true then display empty otherwise render pokeoption  */}
         {Object.keys(pokedata).length == 0 || loading_local ? (
           <h2>loading</h2>
         ) : pokedata.delta.error ? (
