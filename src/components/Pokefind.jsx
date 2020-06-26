@@ -15,32 +15,48 @@ const Pokefind = () => {
   const dispatch = useDispatch();
   const [input, setInput] = useState("");
   const [loading_local, setLoadingLocal] = useState(false);
+  const [random, setRandom] = useState(0);
   const pokelist = useSelector((state) => state.delta.pokelist);
-  // const pokelistLoaded = useSelector((state)=> statee)
 
   // fall color back for default theme
   var fallback = "white";
+  // api call which fetches pokemon list and updates the global state.
 
   useEffect(() => {
     axios.get("https://pokeapi.co/api/v2/pokemon?limit=1000").then((res) => {
-      //  const randomInt = Math.floor(Math.random() * res.data.results.length);
-      //   // console.log(res);
-      //   // dispatch(fetchData(res.data.results[randomInt].name));
-
       dispatch(setPokelist(res.data.results));
-      //   console.log(pokelist);
-      //   dispatch(pokelist[randomInt].name);
-      // });
-      // dispatch(fetchPokelist());
     });
-    // .then(console.log(pokelist));
+
+    document.addEventListener("keydown", function (e) {
+      switch (e.keyCode) {
+        case 37:
+          setRandom((prev) => prev - 1);
+
+          break;
+        case 38:
+          alert("up");
+          break;
+        case 39:
+          setRandom((prev) => prev - 1);
+          break;
+        case 40:
+          break;
+      }
+    });
   }, []);
 
   useEffect(() => {
     if (pokelist && pokelist.length > 800) {
-      const randomInt = Math.floor(Math.random() * pokelist.length);
+      dispatch(fetchData(pokelist[random].name));
+    }
+  }, [random]);
 
-      dispatch(fetchData(pokelist[randomInt].name));
+  //Display random pokemon from pokelist in globalstore.
+
+  useEffect(() => {
+    if (pokelist && pokelist.length > 800) {
+      const randomInt = Math.floor(Math.random() * pokelist.length);
+      setRandom(randomInt);
     }
   }, [pokelist]);
 
@@ -60,6 +76,11 @@ const Pokefind = () => {
     setInterval(() => {
       setLoadingLocal(false);
     }, 500);
+  };
+  const handleEnter = (e) => {
+    if (e.keyCode == 13) {
+      handleClick();
+    }
   };
 
   return (
@@ -84,6 +105,7 @@ const Pokefind = () => {
                 : fallback
             }`,
           }}
+          onKeyDown={handleEnter}
         />
         <button onClick={handleClick}>Search</button>
       </div>
