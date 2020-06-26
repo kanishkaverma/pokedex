@@ -45,9 +45,7 @@ function Pokeoption() {
         </div>
       )}
 
-      <div className="pokeoption-pokemon">
-        {pokerender && <Pokemon img={imgsrc} name={name} />}
-      </div>
+      <div className="pokeoption-pokemon">{pokerender && <Pokemon />}</div>
     </div>
   );
 }

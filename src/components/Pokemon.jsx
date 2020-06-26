@@ -5,30 +5,21 @@ import { fetchData } from "../redux/actions/actions";
 import { useSelector } from "react-redux";
 
 export default function Pokemon(props) {
-  // use state hook
-  const [state, setState] = useState({
-    img: " ",
-    name: " ",
-  });
   // useSelector passing stuff as props
   const types = useSelector((state) => state.delta.data.types);
   const height = useSelector((state) => state.delta.data.height);
   const weight = useSelector((state) => state.delta.data.weight);
   const name = useSelector((state) => state.delta.data.name);
-
-  // set state to the appropriate values once on render.
-  useEffect(() => {
-    setState({ img: props.img, name: props.name });
-  }, []);
+  const imgsrc = useSelector((state) => state.delta.data.sprites.front_default);
 
   return (
     <div>
       <h1>
         <div className="pokeimage">
-          <img src={state.img} alt="Pokemon image." />
+          <img src={imgsrc} alt="Pokemon image." />
         </div>
         <div className="info">
-          {state.name}
+          {name}
           <div className="types">
             <div>Types</div>
             {types.map((x, i) => (
