@@ -1,16 +1,15 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { connect, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchData } from "../redux/actions/actions";
 import { useSelector } from "react-redux";
 import Pokemon from "./Pokemon";
-import Palette from "react-palette";
+
 import { usePalette } from "react-palette";
 import { setColor } from "../redux/actions/actions";
 
 function Pokeoption() {
-
-  //destructuring 
+  //destructuring
   const imgsrc = useSelector((state) => state.delta.data.sprites.front_default);
   const name = useSelector((state) => state.delta.data.name);
   const color = useSelector((state) => state.delta.color);
@@ -19,12 +18,12 @@ function Pokeoption() {
   const [pokeOptionrender, setPokeOptionrender] = useState(true);
   const { data, loading, error } = usePalette(imgsrc);
 
-  //click handler 
+  //click handler
   const handleClick = (e) => {
     setPokerender(true);
     setPokeOptionrender(false);
   };
-  // dynamically change theme 
+  // dynamically change theme
   useEffect(() => {
     if (!loading) {
       if (error) {

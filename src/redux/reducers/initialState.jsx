@@ -3,4 +3,6 @@ export default {
   data: [],
   error: [],
   color: {},
+  pokelist: [],
+  pokelistloaded: false,
 };

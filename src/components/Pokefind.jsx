@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { connect, useDispatch } from "react-redux";
-import { fetchData } from "../redux/actions/actions";
+import { useDispatch } from "react-redux";
+import {
+  fetchData,
+  setPokelist,
+  fetchPokelist,
+} from "../redux/actions/actions";
 import { useSelector } from "react-redux";
 import Pokeoption from "./Pokeoption";
+import axios from "axios";
+import { timeout } from "d3";
+import { random } from "core-js/fn/number";
 
 const Pokefind = () => {
   const pokedata = useSelector((state) => state);
@@ -10,9 +17,34 @@ const Pokefind = () => {
   const dispatch = useDispatch();
   const [input, setInput] = useState("");
   const [loading_local, setLoadingLocal] = useState(false);
+  const pokelist = useSelector((state) => state.delta.pokelist);
+  // const pokelistLoaded = useSelector((state)=> statee)
 
   // fall color back for default theme
   var fallback = "white";
+
+  useEffect(() => {
+    axios.get("https://pokeapi.co/api/v2/pokemon?limit=1000").then((res) => {
+      //  const randomInt = Math.floor(Math.random() * res.data.results.length);
+      //   // console.log(res);
+      //   // dispatch(fetchData(res.data.results[randomInt].name));
+
+      dispatch(setPokelist(res.data.results));
+      //   console.log(pokelist);
+      //   dispatch(pokelist[randomInt].name);
+      // });
+      // dispatch(fetchPokelist());
+    });
+    // .then(console.log(pokelist));
+  }, []);
+
+  useEffect(() => {
+    if (pokelist && pokelist.length > 800) {
+      const randomInt = Math.floor(Math.random() * pokelist.length);
+      // dispatch(pokelist[randomInt].name);
+      console.log(pokelist[randomInt]);
+    }
+  }, [pokelist]);
 
   // refresh theme when there is a pokemon in the state
   useEffect(() => {
