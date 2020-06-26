@@ -4,5 +4,4 @@ export default {
   error: [],
   color: {},
   pokelist: [],
-  pokelistloaded: false,
 };

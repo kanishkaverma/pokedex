@@ -13,7 +13,7 @@ export default function deltaReducer(state = initialState, action) {
     case types.SET_COLOR:
       return { ...state, color: action.payload };
     case types.SET_POKELIST:
-      return { ...state, pokelist: action.payload, pokelistloaded: true };
+      return { ...state, pokelist: action.payload };
 
     default:
       return state;

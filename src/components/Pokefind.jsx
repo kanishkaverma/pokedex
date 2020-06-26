@@ -8,8 +8,6 @@ import {
 import { useSelector } from "react-redux";
 import Pokeoption from "./Pokeoption";
 import axios from "axios";
-import { timeout } from "d3";
-import { random } from "core-js/fn/number";
 
 const Pokefind = () => {
   const pokedata = useSelector((state) => state);
@@ -41,8 +39,8 @@ const Pokefind = () => {
   useEffect(() => {
     if (pokelist && pokelist.length > 800) {
       const randomInt = Math.floor(Math.random() * pokelist.length);
-      // dispatch(pokelist[randomInt].name);
-      console.log(pokelist[randomInt]);
+
+      dispatch(fetchData(pokelist[randomInt].name));
     }
   }, [pokelist]);
 
