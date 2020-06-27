@@ -15,7 +15,7 @@ const Pokefind = () => {
   const dispatch = useDispatch();
   const [input, setInput] = useState("");
   const [loading_local, setLoadingLocal] = useState(false);
-  const [random, setRandom] = useState(0);
+  const [index, setIndex] = useState(0);
   const pokelist = useSelector((state) => state.delta.pokelist);
 
   // fall color back for default theme
@@ -30,14 +30,14 @@ const Pokefind = () => {
     document.addEventListener("keydown", function (e) {
       switch (e.keyCode) {
         case 37:
-          setRandom((prev) => prev - 1);
+          setIndex((prev) => prev - 1);
 
           break;
         case 38:
           alert("up");
           break;
         case 39:
-          setRandom((prev) => prev - 1);
+          setIndex((prev) => prev + 1);
           break;
         case 40:
           break;
@@ -47,16 +47,16 @@ const Pokefind = () => {
 
   useEffect(() => {
     if (pokelist && pokelist.length > 800) {
-      dispatch(fetchData(pokelist[random].name));
+      dispatch(fetchData(pokelist[index].name));
     }
-  }, [random]);
+  }, [index]);
 
   //Display random pokemon from pokelist in globalstore.
 
   useEffect(() => {
     if (pokelist && pokelist.length > 800) {
       const randomInt = Math.floor(Math.random() * pokelist.length);
-      setRandom(randomInt);
+      setIndex(randomInt);
     }
   }, [pokelist]);
 
@@ -68,9 +68,13 @@ const Pokefind = () => {
   }, [data]);
 
   // click handler:
+  // sets index to current pokemon
   // dispatches fetch data
   // sets loading  true and after a delay sets it false
   const handleClick = (e) => {
+    const currentIndex = pokelist.findIndex((element) => element.name == input);
+    setIndex(currentIndex);
+
     dispatch(fetchData(input));
     setLoadingLocal(true);
     setInterval(() => {
