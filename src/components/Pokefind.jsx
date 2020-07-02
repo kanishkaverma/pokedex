@@ -48,6 +48,7 @@ const Pokefind = () => {
   useEffect(() => {
     if (pokelist && pokelist.length > 800) {
       dispatch(fetchData(pokelist[index].name));
+      setInput(pokelist[index].name);
     }
   }, [index]);
 
@@ -104,6 +105,11 @@ const Pokefind = () => {
                 : fallback
             }`,
             backgroundColor: `${
+              data.color && data.color.lightMuted
+                ? data.color.lightMuted
+                : fallback
+            }`,
+            color: `${
               data.color && data.color.darkMuted
                 ? data.color.darkMuted
                 : fallback
@@ -111,7 +117,6 @@ const Pokefind = () => {
           }}
           onKeyDown={handleEnter}
         />
-        <button onClick={handleClick}>Search</button>
       </div>
       <div className="response">
         {/* if pokedata is empty or loading_local is true then display empty otherwise render pokeoption  */}
@@ -120,7 +125,7 @@ const Pokefind = () => {
         ) : pokedata.delta.error ? (
           <h2>{pokedata.delta.error}</h2>
         ) : (
-          <div>
+          <div className="Pokeoption-root">
             <Pokeoption />
           </div>
         )}
