@@ -17,6 +17,7 @@ const Pokefind = () => {
   const [loading_local, setLoadingLocal] = useState(false);
   const [index, setIndex] = useState(0);
   const pokelist = useSelector((state) => state.delta.pokelist);
+  const [error, setError] = useState(null);
 
   // fall color back for default theme
   var fallback = "white";
@@ -74,13 +75,19 @@ const Pokefind = () => {
   // sets loading  true and after a delay sets it false
   const handleClick = (e) => {
     const currentIndex = pokelist.findIndex((element) => element.name == input);
-    setIndex(currentIndex);
-
-    dispatch(fetchData(input));
-    setLoadingLocal(true);
-    setInterval(() => {
-      setLoadingLocal(false);
-    }, 500);
+    if (currentIndex == -1) {
+      setError("Pokemon not found");
+    } 
+    else {
+      setError(null);
+      setIndex(currentIndex);
+  
+      dispatch(fetchData(input));
+      setLoadingLocal(true);
+      setInterval(() => {
+        setLoadingLocal(false);
+      }, 500);
+    }
   };
   const handleEnter = (e) => {
     if (e.keyCode == 13) {
@@ -122,8 +129,8 @@ const Pokefind = () => {
         {/* if pokedata is empty or loading_local is true then display empty otherwise render pokeoption  */}
         {Object.keys(pokedata).length == 0 || loading_local ? (
           <h2>loading</h2>
-        ) : pokedata.delta.error ? (
-          <h2>{pokedata.delta.error}</h2>
+        ) : pokedata.delta.error || error ? (
+          <h2>{pokedata.delta.error || error}</h2>
         ) : (
           <div className="Pokeoption-root">
             <Pokeoption />
