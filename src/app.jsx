@@ -13,7 +13,7 @@ import Pokefind from "./components/Pokefind";
 const store = configureStore();
 function App() {
   return (
-    <Provider store={store}>
+    <Provider store={store}> 
      <Pokefind />
       </Provider>
   );

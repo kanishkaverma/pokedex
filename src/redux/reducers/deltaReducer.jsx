@@ -5,13 +5,16 @@ import initialState from "./initialState";
 export default function deltaReducer(state = initialState, action) {
   switch (action.type) {
     case types.FETCH_POKEMON_REQUEST:
-      return { ...initialState, loading: true };
+      return { ...state, loading: true };
     case types.FETCH_POKEMON_SUCCESS:
-      return { loading: false, data: action.payload, error: "" };
+      return { ...state, loading: false, data: action.payload, error: "" };
     case types.FETCH_POKEMON_FAILURE:
-      return { loading: false, data: [], error: action.payload };
+      return { ...state, loading: false, data: [], error: action.payload };
     case types.SET_COLOR:
       return { ...state, color: action.payload };
+    case types.SET_POKELIST:
+      return { ...state, pokelist: action.payload };
+
     default:
       return state;
   }
