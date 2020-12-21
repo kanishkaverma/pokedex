@@ -8,6 +8,7 @@ import {
 import { useSelector } from "react-redux";
 import Pokeoption from "./Pokeoption";
 import axios from "axios";
+import Loading_svg from "./Loading_svg"; 
 
 const Pokefind = () => {
   const pokedata = useSelector((state) => state);
@@ -86,7 +87,7 @@ const Pokefind = () => {
       setLoadingLocal(true);
       setInterval(() => {
         setLoadingLocal(false);
-      }, 500);
+      }, 1000 );
     }
   };
   const handleEnter = (e) => {
@@ -128,7 +129,8 @@ const Pokefind = () => {
       <div className="response">
         {/* if pokedata is empty or loading_local is true then display empty otherwise render pokeoption  */}
         {Object.keys(pokedata).length == 0 || loading_local ? (
-          <h2>loading</h2>
+        // {tr  ue ? (
+          <Loading_svg/>
         ) : pokedata.delta.error || error ? (
           <h2>{pokedata.delta.error || error}</h2>
         ) : (
