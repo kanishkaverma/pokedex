@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import {
   fetchData,
@@ -8,12 +8,17 @@ import {
 import { useSelector } from "react-redux";
 import Pokeoption from "./Pokeoption";
 import axios from "axios";
-import Loading_svg from "./Loading_svg"; 
+import Loading_svg from "./Loading_svg";
 
 const Pokefind = () => {
   const pokedata = useSelector((state) => state);
   const data = useSelector((state) => state.delta);
   const dispatch = useDispatch();
+  /*
+   * @type {React.MutableRefObject<HTMLInputElement>}
+   */
+  const ref = useRef(null);
+
   const [input, setInput] = useState("");
   const [loading_local, setLoadingLocal] = useState(false);
   const [index, setIndex] = useState(0);
@@ -50,7 +55,8 @@ const Pokefind = () => {
   useEffect(() => {
     if (pokelist && pokelist.length > 800) {
       dispatch(fetchData(pokelist[index].name));
-      setInput(pokelist[index].name);
+      // setInput(pokelist[index].name);
+      ref.current.value = pokelist[index].name;
     }
   }, [index]);
 
@@ -70,6 +76,9 @@ const Pokefind = () => {
     }
   }, [data]);
 
+  useEffect(() => {
+    setInput(input.trim().toLowerCase());
+  }, [input]);
   // click handler:
   // sets index to current pokemon
   // dispatches fetch data
@@ -78,16 +87,15 @@ const Pokefind = () => {
     const currentIndex = pokelist.findIndex((element) => element.name == input);
     if (currentIndex == -1) {
       setError("Pokemon not found");
-    } 
-    else {
+    } else {
       setError(null);
       setIndex(currentIndex);
-  
+      // setInput(input.trim().toLowerCase())
       dispatch(fetchData(input));
       setLoadingLocal(true);
       setInterval(() => {
         setLoadingLocal(false);
-      }, 1000 );
+      }, 1000);
     }
   };
   const handleEnter = (e) => {
@@ -102,7 +110,8 @@ const Pokefind = () => {
         {/* style theme tag according to the pokemon  */}
         <input
           type="text"
-          value={input}
+          // value={input}
+          ref={ref}
           onChange={(i) => setInput(i.target.value)}
           className="search-bar"
           style={{
@@ -129,8 +138,8 @@ const Pokefind = () => {
       <div className="response">
         {/* if pokedata is empty or loading_local is true then display empty otherwise render pokeoption  */}
         {Object.keys(pokedata).length == 0 || loading_local ? (
-        // {tr  ue ? (
-          <Loading_svg/>
+          // {tr  ue ? (
+          <Loading_svg />
         ) : pokedata.delta.error || error ? (
           <h2>{pokedata.delta.error || error}</h2>
         ) : (
