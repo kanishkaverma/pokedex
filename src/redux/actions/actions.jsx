@@ -1,21 +1,21 @@
-import * as types from "./actionTypes";
-import axios from "axios";
-import { dispatch } from "d3";
+import * as types from './actionTypes';
+import axios from 'axios';
+import { dispatch } from 'd3';
 
 //Action creators
 const fetchPokemonSuccess = (x) => ({
   type: types.FETCH_POKEMON_SUCCESS,
-  payload: x,
+  payload: x
 });
 const fetchPokemonFailure = (e) => ({
   type: types.FETCH_POKEMON_FAILURE,
-  payload: e,
+  payload: e
 });
 const fetchPokemonRequest = () => ({ type: types.FETCH_POKEMON_REQUEST });
 
 export const setColor = (x) => ({
   type: types.SET_COLOR,
-  payload: x,
+  payload: x
 });
 
 export const getPokelist = () => {
@@ -24,13 +24,13 @@ export const getPokelist = () => {
 
 export const setPokelist = (x) => ({
   type: types.SET_POKELIST,
-  payload: x,
+  payload: x
 });
 
 // thunk making the api call
-export const fetchData = (input = "pikachu") => {
+export const fetchData = (input = 'pikachu') => {
   return (dispatch) => {
-    dispatch(fetchPokemonRequest);
+    dispatch(fetchPokemonRequest());
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/${input}`)
       .then((res) => {

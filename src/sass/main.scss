@@ -1,13 +1,14 @@
 body {
-  background-color: rgb(179, 37, 37);
+  background-color: white;
   background-size: cover;
   background-position: center;
   //   color: #555;
   //   height: 98vh;
   //   width: 98vw;
-  font-family: "Gugi", cursive;
+  font-family: 'Gugi', cursive;
   text-align: center;
   transition: background-color 250ms ease-in;
+  margin: 0;
 }
 #input_container {
   top: 0;
@@ -17,10 +18,60 @@ body {
   max-width: 95 vw;
   z-index: 10;
   position: absolute;
+  transform: translate(0, 200px);
+  // height: 50px;
 }
+
+.keys-container {
+  img {
+    height: 100px;
+    width: 100px;
+  }
+}
+
 img {
   width: 200px;
   height: auto;
+}
+.pokemon-select {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // justify-content center
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.pokeoption-root {
+  img {
+    width: 200px;
+    height: auto;
+  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // justify-content center
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.pokemon-select {
+  img {
+    width: 200px;
+    height: auto;
+  }
+  // transform: translate(0, 110px);
+
+  h2 {
+    // transform: translate(0, 50px);
+    text-align: left;
+  }
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .loading {
   display: true;
@@ -34,12 +85,38 @@ input {
   display: inline;
   height: 52px;
   line-height: 52px;
-  font-family: "pokemon";
+  font-family: 'pokemon';
+  transform: translate(0, 100px);
+}
+
+.icon {
+  display: flex;
+  img {
+    height: 50px;
+    width: auto;
+    align-content: left;
+  }
+}
+
+.response {
+  margin-top: 100px;
+}
+.keys-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  direction: rtl;
+  // visibility: hidden;
+  // opacity: 0;
+  // transition: visibility 0s 2s, opacity 2s linear;
+  // margin-right: auto;
 }
 // .Pokeoption-root {
-//   display: flex;
-//   background-color: red($color: #000000);
-//   text-align: center;
+//     display: flex;
+//     background-color: red($color: #000000);
+//     text-align: center;
+//     justify-content: space-between;
 // }
 
 // .boilerplate-div {
