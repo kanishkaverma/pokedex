@@ -9,44 +9,49 @@ import { usePalette } from 'react-palette';
 import { setColor } from '../redux/actions/actions';
 
 function Pokeoption() {
-    //destructuring
-    const imgsrc = useSelector((state) => state.delta.data.sprites.front_default);
-    const name = useSelector((state) => state.delta.data.name);
-    const color = useSelector((state) => state.delta.color);
-    const dispatch = useDispatch();
-    const [pokerender, setPokerender] = useState(false);
-    const [pokeOptionrender, setPokeOptionrender] = useState(true);
-    const { data, loading, error } = usePalette(imgsrc);
+  //destructuring
 
-    //click handler
-    const handleClick = (e) => {
-        setPokerender(true);
-        setPokeOptionrender(false);
-    };
-    // dynamically change theme
-    useEffect(() => {
-        if (!loading) {
-            if (error) {
-                console.log('Err');
-            } else {
-                dispatch(setColor(data));
-                document.body.style.backgroundColor = data.vibrant;
-            }
-        }
-    }, [loading]);
+  const {
+    color,
+    data: {
+      name,
+      sprites: { front_default: imgsrc }
+    }
+  } = useSelector((state) => state.delta);
+  const dispatch = useDispatch();
+  const [pokerender, setPokerender] = useState(false);
+  const [pokeOptionrender, setPokeOptionrender] = useState(true);
+  const { data, loading, error } = usePalette(imgsrc);
 
-    return (
-        <div className='pokeoption-root'>
-            {/* conditional rendering of Pokemon component.   */}
-            {pokeOptionrender && (
-                <div className='pokemon-select'>
-                    <img src={imgsrc} alt='Pokemon image.' onClick={handleClick} />
-                    <h2>{name}</h2>
-                </div>
-            )}
+  //click handler
+  const handleClick = (e) => {
+    setPokerender(true);
+    setPokeOptionrender(false);
+  };
+  // dynamically change theme
+  useEffect(() => {
+    if (!loading) {
+      if (error) {
+        console.log('Err');
+      } else {
+        dispatch(setColor(data));
+        document.body.style.backgroundColor = data.vibrant;
+      }
+    }
+  }, [loading]);
 
-            <div className='pokeoption-pokemon'>{pokerender && <Pokemon />}</div>
+  return (
+    <div className='pokeoption-root'>
+      {/* conditional rendering of Pokemon component.   */}
+      {pokeOptionrender && (
+        <div className='pokemon-select'>
+          <img src={imgsrc} alt='Pokemon image.' onClick={handleClick} />
+          <h2>{name}</h2>
         </div>
-    );
+      )}
+
+      <div className='pokeoption-pokemon'>{pokerender && <Pokemon />}</div>
+    </div>
+  );
 }
 export default Pokeoption;

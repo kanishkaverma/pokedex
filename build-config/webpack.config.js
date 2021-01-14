@@ -25,6 +25,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: path.resolve(__dirname, "../build/index.html"),
             template: path.resolve(__dirname, "template.html"),
+            favicon: "assets/favicon.ico",
             alwaysWriteToDisk: true
         }),
 

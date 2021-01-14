@@ -10,11 +10,10 @@ import Navbar from './Navbar';
 import { setTimeout } from 'core-js';
 
 const Pokefind = () => {
-  const { data, pokelist, loading, color } = useSelector((state) => state.delta);
+  const { data, pokelist, loading, color, error } = useSelector((state) => state.delta);
   const [input, setInput] = useState('');
-  const [loading_local, setLoadingLocal] = useState(false);
   const [index, setIndex] = useState(0);
-  const [error, setError] = useState(null);
+  const [error_local, setError] = useState(null);
   const [visible, setvisible] = useState(true);
   const ref = useRef(null);
   const dispatch = useDispatch();
@@ -84,9 +83,7 @@ const Pokefind = () => {
     } else {
       setError(null);
       setIndex(currentIndex);
-      setLoadingLocal(true);
       dispatch(fetchData(input));
-      setLoadingLocal(false);
     }
   };
   const handleEnter = (e) => {
@@ -121,19 +118,17 @@ const Pokefind = () => {
         />
       </div>
       <div className='response'>
-        {/* if pokedata is empty or loading_local is true then display loading spinner otherwise render pokeoption  */}
         {loading ? (
-          // {tr  ue ? (
           <Loading_svg />
-        ) : error || error ? (
-          <h2>{error || error}</h2>
+        ) : error_local || error ? (
+          <h2>{error_local || error}</h2>
         ) : (
           <div className='Pokeoption-root'>
             <Pokeoption />
           </div>
         )}
       </div>
-      <div className='keys-container'>{visible && <img src={keys} alt='' />}</div>
+      <div className='keys-container'>{visible && !loading && <img src={keys} alt='' />}</div>
     </div>
   );
 };
