@@ -1,26 +1,33 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import { connect, useDispatch } from "react-redux";
-import { fetchData } from "../redux/actions/actions";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { useEffect, useState } from 'react';
+import { connect, useDispatch } from 'react-redux';
+import { fetchData } from '../redux/actions/actions';
+import { useSelector } from 'react-redux';
+// import PokeChart from './PokeChart';
 
 export default function Pokemon(props) {
-  // useSelector passing stuff as props
-  const types = useSelector((state) => state.delta.data.types);
-  const height = useSelector((state) => state.delta.data.height);
-  const weight = useSelector((state) => state.delta.data.weight);
-  const name = useSelector((state) => state.delta.data.name);
-  const imgsrc = useSelector((state) => state.delta.data.sprites.front_default);
-
+  const {
+    types,
+    height,
+    weight,
+    name,
+    sprites: { front_default: imgsrc },
+    stats: [a, b, c, d, e, f]
+  } = useSelector((state) => state.delta.data);
+  useEffect(() => {
+    // console.log(stats);
+    console.log(a);
+  }, [a]);
   return (
     <div>
       <h1>
-        <div className="pokeimage">
-          <img src={imgsrc} alt="Pokemon image." />
+        <div className='pokeimage'>
+          <img src={imgsrc} alt='Pokemon image.' />
         </div>
-        <div className="info">
+        <div className='info'>
           {name}
-          <div className="types">
+          {/* <PokeChart /> */}
+          <div className='types'>
             <div>Types</div>
             {types.map((x, i) => (
               <div key={`${x.type.name}-${i}`}>{x.type.name} </div>

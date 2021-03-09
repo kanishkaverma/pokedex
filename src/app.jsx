@@ -1,7 +1,6 @@
 /*global $*/
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Pokesearch from './components/Pokesearch';
 import configureStore from './redux/store/configureStore';
 import { Provider } from 'react-redux';
 import Favicon from 'react-favicon';

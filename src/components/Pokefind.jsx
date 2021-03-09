@@ -64,7 +64,6 @@ const Pokefind = () => {
   // refresh theme when there is a pokemon in the state
   useEffect(() => {
     if (data?.color?.vibrant) {
-      console.log(data);
       fallback = color.darkVibrant;
     }
   }, [data]);
