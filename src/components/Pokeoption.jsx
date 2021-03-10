@@ -8,11 +8,13 @@ import Pokemon from './Pokemon';
 import { usePalette } from 'react-palette';
 import { setColor } from '../redux/actions/actions';
 
-function Pokeoption() {
+function Pokeoption(props) {
+  
+  const fallback = 'white'
+  
   //destructuring
 
   const {
-    color,
     data: {
       name,
       sprites: { front_default: imgsrc }
@@ -23,6 +25,10 @@ function Pokeoption() {
   const [pokeOptionrender, setPokeOptionrender] = useState(true);
   const { data, loading, error } = usePalette(imgsrc);
 
+  const { color }  = props
+  
+  console.log(color)
+
   //click handler
   const handleClick = (e) => {
     setPokerender(true);
@@ -32,7 +38,7 @@ function Pokeoption() {
   useEffect(() => {
     if (!loading) {
       if (error) {
-        console.log('Err');
+        console.log('Err'); 
       } else {
         dispatch(setColor(data));
         document.body.style.backgroundColor = data.vibrant;
@@ -44,8 +50,20 @@ function Pokeoption() {
     <div className='pokeoption-root'>
       {/* conditional rendering of Pokemon component.   */}
       {pokeOptionrender && (
-        <div className='pokemon-select'>
-          <img src={imgsrc} alt='Pokemon image.' onClick={handleClick} />
+        <div
+          className='pokemon-select'
+          style={{
+            // use data.color if available otherwise use fallback color.
+            border: `4 px solid ${color?.darkVibrant ? color.darkVibrant : fallback}`,
+            backgroundColor: `${color?.muted}`
+
+            
+            
+            // color: `${color?.darkMuted ? color.darkMuted : fallback}`
+          }}
+          onClick={handleClick}
+        >
+          <img src={imgsrc} alt='Pokemon image.' />
           <h2>{name}</h2>
         </div>
       )}

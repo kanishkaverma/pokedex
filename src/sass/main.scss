@@ -13,14 +13,20 @@ body {
 #input_container {
   top: 0;
   right: 0;
-  margin: 10px;
+  // margin: 10px;
   width: 390px;
   max-width: 95 vw;
   z-index: 10;
   position: absolute;
   transform: translate(0, 200px);
+  border-radius: 3px;
+
   // height: 50px;
 }
+
+// #search-bar{
+//   border-radius: 1em;
+// }
 
 .keys-container {
   img {
@@ -41,6 +47,17 @@ img {
   align-items: center;
   height: 100%;
   width: 100%;
+  transform: translate(0, 15vh);
+  padding: 50px;
+  background-color: green;
+  transition: transform 0.3s; /* Animation */
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  border-radius: 1em;
+}
+.pokemon-select:hover {
+  transform: scale(1.0001); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 .pokeoption-root {
   img {
@@ -87,6 +104,9 @@ input {
   line-height: 52px;
   font-family: 'pokemon';
   transform: translate(0, 100px);
+  border-radius: 1em;
+  padding-left: 15px;
+
 }
 
 .icon {

@@ -123,7 +123,7 @@ const Pokefind = () => {
           <h2>{error_local || error}</h2>
         ) : (
           <div className='Pokeoption-root'>
-            <Pokeoption />
+                <Pokeoption color={color} />
           </div>
         )}
       </div>

@@ -16,7 +16,6 @@ export default function Pokemon(props) {
   } = useSelector((state) => state.delta.data);
   useEffect(() => {
     // console.log(stats);
-    console.log(a);
   }, [a]);
   return (
     <div>
