@@ -6,6 +6,14 @@ import { useSelector } from 'react-redux';
 // import PokeChart from './PokeChart';
 
 export default function Pokemon(props) {
+  const dict = {
+    normal: 'rgb(255, 255, 255)',
+    fire: 'rgb(240, 128, 48)',
+    water: 'rgb(104, 144, 240)',
+    grass: 'green',
+    fighting: 'rgb(192, 48, 40)', 
+    flying: '#A890F0'
+  };
   const {
     types,
     height,
@@ -29,7 +37,12 @@ export default function Pokemon(props) {
           <div className='types'>
             <div>Types</div>
             {types.map((x, i) => (
-              <div key={`${x.type.name}-${i}`}>{x.type.name} </div>
+              <div key={`${x.type.name}-${i}`}
+              style={{
+                  backgroundColor: dict[x.type.name]
+                }} 
+              
+              >{x.type.name} </div>
             ))}
           </div>
           <div>height: {`${height / 10}m`}</div>

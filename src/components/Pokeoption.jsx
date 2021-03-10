@@ -9,9 +9,21 @@ import { usePalette } from 'react-palette';
 import { setColor } from '../redux/actions/actions';
 
 function Pokeoption(props) {
+  const fallback = 'white';
+
   
-  const fallback = 'white'
+  useEffect(() => {
+    
+    document.addEventListener('keydown', function (e) {
+      switch (e.keyCode) {
+        case 13:
+          handleClick();
   
+          break;
+      }
+    });
+  }, []);
+
   //destructuring
 
   const {
@@ -25,20 +37,21 @@ function Pokeoption(props) {
   const [pokeOptionrender, setPokeOptionrender] = useState(true);
   const { data, loading, error } = usePalette(imgsrc);
 
-  const { color }  = props
-  
-  console.log(color)
+  const { color } = props;
+
+  console.log(color);
 
   //click handler
   const handleClick = (e) => {
     setPokerender(true);
     setPokeOptionrender(false);
   };
+
   // dynamically change theme
   useEffect(() => {
     if (!loading) {
       if (error) {
-        console.log('Err'); 
+        console.log('Err');
       } else {
         dispatch(setColor(data));
         document.body.style.backgroundColor = data.vibrant;
@@ -57,8 +70,6 @@ function Pokeoption(props) {
             border: `4 px solid ${color?.darkVibrant ? color.darkVibrant : fallback}`,
             backgroundColor: `${color?.muted}`
 
-            
-            
             // color: `${color?.darkMuted ? color.darkMuted : fallback}`
           }}
           onClick={handleClick}
