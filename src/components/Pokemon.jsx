@@ -13,29 +13,29 @@ export default function Pokemon(props) {
     fire: 'rgb(240, 128, 48)',
     water: 'rgb(104, 144, 240)',
     grass: 'green',
-    fighting: 'rgb(192, 48, 40)', 
+    fighting: 'rgb(192, 48, 40)',
     flying: '#A890F0'
   };
-  
+
   const {
     types,
     height,
     weight,
     name,
     sprites: { front_default: imgsrc },
-    stats: [a,b,c,d,e]
+    stats: [a, b, c, d, e]
   } = useSelector((state) => state.delta.data);
   useEffect(() => {
     // console.log(stats)
-    console.log(a.base_stat,b,c)
+    console.log(a.base_stat, b, c);
   }, []);
 
   const data = {
-    labels: [a.stat.name,b.stat.name,c.stat.name,d.stat.name,e.stat.name],
+    labels: [a.stat.name, b.stat.name, c.stat.name, d.stat.name, e.stat.name],
     datasets: [
       {
         label: '# of Votes',
-        data: [a.base_stat,b.base_stat,c.base_stat,d.base_stat,e.base_stat ],
+        data: [a.base_stat, b.base_stat, c.base_stat, d.base_stat, e.base_stat],
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -57,23 +57,27 @@ export default function Pokemon(props) {
     ]
   };
   return (
-    <div>
+    <div className='pokemon'>
+      <div className='name'>
+        <h1>{name}</h1>
+      </div>
       <h1>
         <div className='pokeimage'>
           <img src={imgsrc} alt='Pokemon image.' />
         </div>
         <div className='info'>
-          {name}
           {/* <PokeChart /> */}
           <div className='types'>
             <div>Types</div>
             {types.map((x, i) => (
-              <div key={`${x.type.name}-${i}`}
-              style={{
+              <div
+                key={`${x.type.name}-${i}`}
+                style={{
                   backgroundColor: dict[x.type.name]
-                }} 
-              
-              >{x.type.name} </div>
+                }}
+              >
+                {x.type.name}{' '}
+              </div>
             ))}
           </div>
           <Doughnut data={data} />

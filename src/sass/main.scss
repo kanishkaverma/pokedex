@@ -2,9 +2,6 @@ body {
   background-color: white;
   background-size: cover;
   background-position: center;
-  //   color: #555;
-  //   height: 98vh;
-  //   width: 98vw;
   font-family: 'Gugi', cursive;
   text-align: center;
   transition: background-color 250ms ease-in;
@@ -13,20 +10,13 @@ body {
 #input_container {
   top: 0;
   right: 0;
-  // margin: 10px;
   width: 390px;
   max-width: 95 vw;
   z-index: 10;
   position: absolute;
   transform: translate(0, 200px);
   border-radius: 3px;
-
-  // height: 50px;
 }
-
-// #search-bar{
-//   border-radius: 1em;
-// }
 
 .keys-container {
   img {
@@ -43,21 +33,33 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  // justify-content center
   align-items: center;
   height: 100%;
   width: 100%;
   transform: translate(0, 15vh);
   padding: 50px;
   background-color: green;
-  transition: transform 0.3s; /* Animation */
+  transition: transform 0.3s; 
   width: 200px;
   height: 200px;
   margin: 0 auto;
   border-radius: 1em;
 }
 .pokemon-select:hover {
-  transform: scale(1.0001); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transform: scale(1.0001);  
+}
+.types {
+  border-radius: 1em;
+  border: 1px solid ;
+  div{ 
+    border-radius: 1em  ;
+  }
+}
+.pokemon {
+  display: flex;
+  h1 {
+    display: flex;
+  }
 }
 .pokeoption-root {
   img {
@@ -67,7 +69,6 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  // justify-content center
   align-items: center;
   height: 100%;
   width: 100%;
@@ -77,10 +78,8 @@ img {
     width: 200px;
     height: auto;
   }
-  // transform: translate(0, 110px);
 
   h2 {
-    // transform: translate(0, 50px);
     text-align: left;
   }
 }
@@ -106,7 +105,6 @@ input {
   transform: translate(0, 100px);
   border-radius: 1em;
   padding-left: 15px;
-
 }
 
 .icon {
@@ -127,35 +125,4 @@ input {
   justify-content: space-between;
   align-items: flex-end;
   direction: rtl;
-  // visibility: hidden;
-  // opacity: 0;
-  // transition: visibility 0s 2s, opacity 2s linear;
-  // margin-right: auto;
 }
-// .Pokeoption-root {
-//     display: flex;
-//     background-color: red($color: #000000);
-//     text-align: center;
-//     justify-content: space-between;
-// }
-
-// .boilerplate-div {
-//   width: 100vw;
-//   height: max-content;
-//   text-align: center;
-//   text-decoration: none;
-//   font-size: 50px;
-//   color: #5d6068d6;
-//   text-transform: uppercase;
-
-//   &:hover {
-//     color: Black;
-//     cursor: pointer;
-//   }
-// }
-
-// import base - contains global styles, such as resets, typography, colors
-// import components- contains each self-contained component in its own .scss partial
-// import pages contains page-specific styling
-
-// example import statement '@import 'pages/home';'

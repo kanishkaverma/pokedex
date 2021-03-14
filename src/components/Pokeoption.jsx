@@ -11,14 +11,12 @@ import { setColor } from '../redux/actions/actions';
 function Pokeoption(props) {
   const fallback = 'white';
 
-  
   useEffect(() => {
-    
     document.addEventListener('keydown', function (e) {
       switch (e.keyCode) {
         case 13:
           handleClick();
-  
+
           break;
       }
     });
@@ -38,8 +36,6 @@ function Pokeoption(props) {
   const { data, loading, error } = usePalette(imgsrc);
 
   const { color } = props;
-
-
 
   //click handler
   const handleClick = (e) => {
@@ -70,7 +66,7 @@ function Pokeoption(props) {
             border: `4 px solid ${color?.darkVibrant ? color.darkVibrant : fallback}`,
             backgroundColor: `${color?.muted}`
 
-            // color: `${color?.darkMuted ? color.darkMuted : fallback}`
+            // color: `${color?.darkMuted ? color.darkMuted : fallback
           }}
           onClick={handleClick}
         >

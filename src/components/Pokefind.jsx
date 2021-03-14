@@ -48,7 +48,7 @@ const Pokefind = () => {
   useEffect(() => {
     if (pokelist && pokelist.length > 800) {
       dispatch(fetchData(pokelist[index].name));
-      ref.current.value = pokelist[index].name;
+      // ref.current.value = pokelist[index].name;
     }
   }, [index]);
 
@@ -66,6 +66,8 @@ const Pokefind = () => {
     if (data?.color?.vibrant) {
       fallback = color.darkVibrant;
     }
+
+    ref.current.value = data.name;
   }, [data]);
 
   useEffect(() => {
@@ -123,7 +125,7 @@ const Pokefind = () => {
           <h2>{error_local || error}</h2>
         ) : (
           <div className='Pokeoption-root'>
-                <Pokeoption color={color} />
+            <Pokeoption color={color} />
           </div>
         )}
       </div>
