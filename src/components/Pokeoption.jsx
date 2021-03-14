@@ -39,7 +39,7 @@ function Pokeoption(props) {
 
   const { color } = props;
 
-  console.log(color);
+
 
   //click handler
   const handleClick = (e) => {
