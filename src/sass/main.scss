@@ -7,16 +7,6 @@ body {
   transition: background-color 250ms ease-in;
   margin: 0;
 }
-#input_container {
-  top: 0;
-  right: 0;
-  width: 390px;
-  max-width: 95 vw;
-  z-index: 10;
-  position: absolute;
-  transform: translate(0, 200px);
-  border-radius: 3px;
-}
 
 .keys-container {
   img {
@@ -34,9 +24,8 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
   width: 100%;
-  transform: translate(0, 15vh);
+  height: 100%;
   padding: 50px;
   background-color: green;
   transition: transform 0.3s; 
@@ -45,16 +34,7 @@ img {
   margin: 0 auto;
   border-radius: 1em;
 }
-.pokemon-select:hover {
-  transform: scale(1.0001);  
-}
-.types {
-  border-radius: 1em;
-  border: 1px solid ;
-  div{ 
-    border-radius: 1em  ;
-  }
-}
+
 .pokemon {
   display: flex;
   h1 {
@@ -85,26 +65,22 @@ img {
 }
 .main {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  margin-top: 80px;
   align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .loading {
   display: true;
 }
 
-input {
+input.search-bar {
   font-size: 30px;
-
-  padding: 10px 5px 0px 5px;
-  outline: none;
   display: inline;
-  height: 52px;
-  line-height: 52px;
-  font-family: 'segoi ui';
-  transform: translate(0, 100px);
-  border-radius: 1em;
-  padding-left: 15px;
+  font-family: system-ui;
+  border-radius: 10px;
+  padding: 10px 15px;
+  font-weight: 600;
 }
 
 .icon {
@@ -117,7 +93,7 @@ input {
 }
 
 .response {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 .keys-container {
   display: flex;
@@ -126,3 +102,98 @@ input {
   align-items: flex-end;
   direction: rtl;
 }
+
+@media (min-width: 640px) {
+  div.pokemon > div.name {
+      display: flex;
+      justify-items: center;
+      align-items: center;
+  }
+
+  .pokemon {
+      display: flex;
+      flex-direction: column;
+  }    
+}
+
+@media (min-width: 1024px) {
+  .pokemon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+}
+
+.info > *:not(:last-child) {
+  margin-bottom: 24px;
+}
+
+.types {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 5px;
+  padding: 8px 10px;
+  font-family: system-ui;
+  font-weight: 600;
+
+  & > div:not(:last-child) {
+    margin-right: 1.25rem;
+  }
+  
+  .title {
+    text-transform: uppercase;
+  }
+  .sep {
+    font-size: 25px;
+    font-weight: 200;
+    transform: translate(0px, -3.5px);
+  }
+
+  .type {
+    background: rgb(107, 114, 128);
+    border-radius: 0.5rem;
+    padding: 0.25rem 1rem;
+    color: white;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.type-title {
+  margin-right: 6px;
+}
+
+.name {
+  text-align: center;
+}
+
+.keys {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0px;
+  align-items: center;
+
+  .key {
+    display: flex;
+    cursor: pointer;
+    width: var(--size);
+    height: var(--size);
+    background: white;
+    margin-right: 20px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    --size: 50px;
+    &:last-child {
+      margin-right: 0px;
+    }
+    &.return {
+      font-size: 20px;
+    } 
+  }
+
+}
+

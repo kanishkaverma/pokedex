@@ -4,12 +4,12 @@ import { connect, useDispatch } from 'react-redux';
 import { fetchData } from '../redux/actions/actions';
 import { useSelector } from 'react-redux';
 import { Doughnut } from 'react-chartjs-2';
-
-// import MyChart from './PokeChart';
+import { defaults } from 'react-chartjs-2';
 
 export default function Pokemon(props) {
+  defaults.global.defaultFontColor = 'black';
   const dict = {
-    normal: 'rgb(255, 255, 255)',
+    normal: '#A8A878',
     fire: 'rgb(240, 128, 48)',
     water: 'rgb(104, 144, 240)',
     grass: 'green',
@@ -27,7 +27,6 @@ export default function Pokemon(props) {
     dark: '#705848 ',
     steel: '#B8B8D0',
     fairy: '#EE99AC'
-
   };
 
   const {
@@ -38,33 +37,22 @@ export default function Pokemon(props) {
     sprites: { front_default: imgsrc },
     stats: [a, b, c, d, e]
   } = useSelector((state) => state.delta.data);
+
+  const { color } = useSelector((state) => state.delta);
+
   useEffect(() => {
-    // console.log(stats)
-    console.log(a.base_stat, b, c);
-  }, []);
+    console.log(color);
+  }, [color]);
 
   const data = {
     labels: [a.stat.name, b.stat.name, c.stat.name, d.stat.name, e.stat.name],
     datasets: [
       {
-        label: '# of Votes',
+        label: 'Stats',
         data: [a.base_stat, b.base_stat, c.base_stat, d.base_stat, e.base_stat],
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
+        backgroundColor: ['#4CC9F0', '#4895EF', '#4361EE', '#3F37C9', '#3A0CA3B', '#480CA8'],
+
+        borderColor: ['#4CC9F0', '#4895EF', '#4361EE', '#3F37C9', '#3A0CA3B', '#480CA8'],
         borderWidth: 1
       }
     ]
@@ -74,16 +62,17 @@ export default function Pokemon(props) {
       <div className='name'>
         <h1>{name}</h1>
       </div>
-      <h1>
+      <div>
         <div className='pokeimage'>
           <img src={imgsrc} alt='Pokemon image.' />
         </div>
         <div className='info'>
-          {/* <PokeChart /> */}
           <div className='types'>
-            <div>Types</div>
+            <div className='title'>Types</div>
+            <div className='sep'>|</div>
             {types.map((x, i) => (
               <div
+                className='type'
                 key={`${x.type.name}-${i}`}
                 style={{
                   backgroundColor: dict[x.type.name]
@@ -98,7 +87,7 @@ export default function Pokemon(props) {
           <div>height: {`${height / 10}m`}</div>
           <div>weight: {`${weight / 10}kg`}</div>
         </div>
-      </h1>
+      </div>
     </div>
   );
 }

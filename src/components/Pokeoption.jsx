@@ -13,7 +13,7 @@ function Pokeoption(props) {
 
   useEffect(() => {
     document.addEventListener('keydown', function (e) {
-      switch (e.keyCode) {
+      switch (e) {
         case 13:
           handleClick();
 
@@ -74,8 +74,7 @@ function Pokeoption(props) {
           <h2>{name}</h2>
         </div>
       )}
-
-      <div className='pokeoption-pokemon'>{pokerender && <Pokemon />}</div>
+      {pokerender && <Pokemon />}
     </div>
   );
 }

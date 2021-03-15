@@ -7,7 +7,8 @@ import axios from 'axios';
 import Loading_svg from './Loading_svg';
 import keys from '../../build/assets/arrow_keys.svg';
 import Navbar from './Navbar';
-import { setTimeout } from 'core-js';
+import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
+import { BsArrowReturnLeft } from 'react-icons/bs';
 
 const Pokefind = () => {
   const { data, pokelist, loading, color, error } = useSelector((state) => state.delta);
@@ -28,18 +29,12 @@ const Pokefind = () => {
     });
 
     document.addEventListener('keydown', function (e) {
-      switch (e.keyCode) {
+      switch (e) {
         case 37:
           setIndex((prev) => prev - 1);
-
-          break;
-        case 38:
-          //   alert('up');
           break;
         case 39:
           setIndex((prev) => prev + 1);
-          break;
-        case 40:
           break;
       }
     });
@@ -48,7 +43,6 @@ const Pokefind = () => {
   useEffect(() => {
     if (pokelist && pokelist.length > 800) {
       dispatch(fetchData(pokelist[index].name));
-      // ref.current.value = pokelist[index].name;
     }
   }, [index]);
 
@@ -98,14 +92,12 @@ const Pokefind = () => {
   }, [visible]);
 
   return (
-    <div className='main'>
+    <>
       <Navbar />
-
-      <div className='search-bar-root'>
+      <div className='main'>
         {/* style theme tag according to the pokemon  */}
         <input
           type='text'
-          // value={input}
           ref={ref}
           onChange={(i) => setInput(i.target.value)}
           className='search-bar'
@@ -117,20 +109,20 @@ const Pokefind = () => {
           }}
           onKeyDown={handleEnter}
         />
+        <div className='response'>{loading ? <Loading_svg /> : error_local || error ? <h2>{error_local || error}</h2> : <Pokeoption color={color} />}</div>
       </div>
-      <div className='response'>
-        {loading ? (
-          <Loading_svg />
-        ) : error_local || error ? (
-          <h2>{error_local || error}</h2>
-        ) : (
-          <div className='Pokeoption-root'>
-            <Pokeoption color={color} />
-          </div>
-        )}
+      <div className='keys'>
+        <div className='key left' title='Cycle to the previous pokemon.'>
+          <HiArrowLeft />
+        </div>
+        <div className='key right' title='Cycle to the next pokemon.'>
+          <HiArrowRight />
+        </div>
+        <div className='key return' title='Press the Enter key to see Pokemon details.'>
+          <BsArrowReturnLeft />
+        </div>
       </div>
-      <div className='keys-container'>{visible && !loading && <img src={keys} alt='' />}</div>
-    </div>
+    </>
   );
 };
 
