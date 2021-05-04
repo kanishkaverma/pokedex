@@ -29,7 +29,7 @@ const Pokefind = () => {
     });
 
     document.addEventListener('keydown', function (e) {
-      switch (e) {
+      switch (e.keyCode) {
         case 37:
           setIndex((prev) => prev - 1);
           break;
