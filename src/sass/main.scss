@@ -28,7 +28,7 @@ img {
   height: 100%;
   padding: 50px;
   background-color: green;
-  transition: transform 0.3s; 
+  transition: transform 0.3s;
   width: 200px;
   height: 200px;
   margin: 0 auto;
@@ -105,22 +105,22 @@ input.search-bar {
 
 @media (min-width: 640px) {
   div.pokemon > div.name {
-      display: flex;
-      justify-items: center;
-      align-items: center;
+    display: flex;
+    justify-items: center;
+    align-items: center;
   }
 
   .pokemon {
-      display: flex;
-      flex-direction: column;
-  }    
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 @media (min-width: 1024px) {
   .pokemon {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -141,7 +141,7 @@ input.search-bar {
   & > div:not(:last-child) {
     margin-right: 1.25rem;
   }
-  
+
   .title {
     text-transform: uppercase;
   }
@@ -172,7 +172,11 @@ input.search-bar {
 
 .keys {
   display: flex;
-  justify-content: center;
+  // max-width: 100px;between
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-between;
   padding: 20px 0px;
   align-items: center;
 
@@ -192,8 +196,6 @@ input.search-bar {
     }
     &.return {
       font-size: 20px;
-    } 
+    }
   }
-
 }
-

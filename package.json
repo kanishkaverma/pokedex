@@ -14,6 +14,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@heroicons/react": "^1.0.1",
     "axios": "^0.21.1",
     "chart.js": "^2.9.4",
     "color-thief-react": "^1.0.2",
@@ -23,6 +24,7 @@
     "fast-levenshtein": "^2.0.6",
     "image-palette": "^2.1.0",
     "image-pixels": "^2.2.2",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.11.1",
     "react-dom": "^16.13.1",
@@ -48,13 +50,12 @@
     "html-loader": "^0.5.5",
     "html-webpack-harddisk-plugin": "^1.0.1",
     "html-webpack-plugin": "^3.2.0",
-    "node-sass": "^4.12.0",
     "redux-devtools-extension": "^2.13.8",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "svg-url-loader": "^7.1.1",
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5",
-    "webpack-dev-server": "^3.7.2"
+    "webpack-dev-server": "^3.11.2"
   }
 }

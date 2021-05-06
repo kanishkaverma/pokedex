@@ -1,9 +1,10 @@
 /*global $*/
-import React, { Component } from 'react';
+import { Component } from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './redux/store/configureStore';
 import { Provider } from 'react-redux';
 import Favicon from 'react-favicon';
+import * as React from 'react';
 
 //Root sass file for webpack to compile
 import './sass/main';

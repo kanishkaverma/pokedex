@@ -9,6 +9,7 @@ import keys from '../../build/assets/arrow_keys.svg';
 import Navbar from './Navbar';
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
 import { BsArrowReturnLeft } from 'react-icons/bs';
+import InfoButton from './InfoButton';
 
 const Pokefind = () => {
   const { data, pokelist, loading, color, error } = useSelector((state) => state.delta);
@@ -83,7 +84,7 @@ const Pokefind = () => {
   };
   const handleEnter = (e) => {
     if (e.keyCode == 13) {
-      handleClick();
+      handleClick(e);
     }
   };
 
@@ -112,7 +113,17 @@ const Pokefind = () => {
         <div className='response'>{loading ? <Loading_svg /> : error_local || error ? <h2>{error_local || error}</h2> : <Pokeoption color={color} />}</div>
       </div>
       <div className='keys'>
-        <div className='key left' title='Cycle to the previous pokemon.'>
+        <InfoButton title='Cycle to the previous pokemon.' onClick={() => setIndex((prev) => prev - 1)}>
+          <HiArrowLeft />
+        </InfoButton>
+        <InfoButton title='Cycle to the next pokemon.' onClick={() => setIndex((prev) => prev + 1)}>
+          <HiArrowRight />
+        </InfoButton>
+        <InfoButton title='Press the Enter key to see Pokemon details.'>
+          <BsArrowReturnLeft />
+        </InfoButton>
+
+        {/* <div className='key left' title='Cycle to the previous pokemon.'>
           <HiArrowLeft />
         </div>
         <div className='key right' title='Cycle to the next pokemon.'>
@@ -120,7 +131,7 @@ const Pokefind = () => {
         </div>
         <div className='key return' title='Press the Enter key to see Pokemon details.'>
           <BsArrowReturnLeft />
-        </div>
+        </div> */}
       </div>
     </>
   );
